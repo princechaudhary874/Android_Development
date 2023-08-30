@@ -1,37 +1,40 @@
-import React from 'react';
-import {Button, View, Text} from 'react-native';
-
+import React, { useState } from 'react'
+import { Button, Text, View } from 'react-native'
 
 const App = () => {
-  let data=40;
-  const fruits =(val) => {
-    data=50
-    // console.warn(val);
-    console.warn(data);
+  let data ="ram"
+  const [name, setName] = useState("Hello baby!");
+  const [number, setNumber] = useState(0);
+  //function to update name
+  const update = () => {
+    setName("Raj");
+    data="ravan"
+  }
+  //function to increase number
+  const increment = () => {
+    setNumber(number + 1)
+  }
 
-   }
+  //function to decrease number
+  const decrement = () => {
+    setNumber(number - 1)
+  }
   return (
     <View>
-      <Text style={{fontSize: 30, color: 'green'}}>
-        Button and onPress Event
+      <Text style={{ fontSize: 40 }}>
+        {name} {data}
       </Text>
-      <Text style={{fontSize: 50, color: 'black'}}>
-        {data}
+      <Button onPress={update} title='Update Name' />
+      <Text style={{ fontSize: 40 }}>
+        {number}
       </Text>
-      {/* trick to call a function using onPress */}
-       {/* this function is mainly used to pass parameter */}
-       <Button
-        title="On Press using arrow function"
-        onPress={() => fruits('kem xo motabhai')}
-        color={'red'}
-      />
-       {/* Alternative tricks */}
-      {/* this method is used when we don't have to pass a parameter */}
-      <Button title="On Press" onPress={fruits} color={'green'} />
-     
-     
-    </View>
-  );
-};
+      <Button onPress={increment} title='UP' color={'red'} />
+      <Button onPress={decrement} title='down' color={'green'} />
 
-export default App;
+    </View>
+
+
+  )
+}
+
+export default App
