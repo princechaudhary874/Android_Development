@@ -1,40 +1,25 @@
-import React, { useState } from 'react'
-import { Button, Text, View } from 'react-native'
+import React, {useState} from 'react';
+import {Button, Text, View} from 'react-native';
 
 const App = () => {
-  let data ="ram"
-  const [name, setName] = useState("Hello baby!");
-  const [number, setNumber] = useState(0);
-  //function to update name
-  const update = () => {
-    setName("Raj");
-    data="ravan"
-  }
-  //function to increase number
-  const increment = () => {
-    setNumber(number + 1)
-  }
-
-  //function to decrease number
-  const decrement = () => {
-    setNumber(number - 1)
-  }
+  const [name, setName] = useState('I am the child components');
   return (
     <View>
-      <Text style={{ fontSize: 40 }}>
-        {name} {data}
-      </Text>
-      <Button onPress={update} title='Update Name' />
-      <Text style={{ fontSize: 40 }}>
-        {number}
-      </Text>
-      <Button onPress={increment} title='UP' color={'red'} />
-      <Button onPress={decrement} title='down' color={'green'} />
-
+      <Text style={{fontSize: 40}}>Props</Text>
+      <Button
+        title="Update Props"
+        onPress={() => setName('Props is updated successfull!')}
+      />
+      <User name={name} />
     </View>
-
-
-  )
-}
-
-export default App
+  );
+};
+//creating child components
+const User = (props) => {
+  return (
+    <View style={{backgroundColor: 'black', paddingLeft: 25}}>
+      <Text style={{fontSize: 30, color: 'aqua'}}>{props.name}</Text>
+    </View>
+  );
+};
+export default App;
