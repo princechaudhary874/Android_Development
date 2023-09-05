@@ -1,30 +1,93 @@
+// Import necessary modules
 import React, { useState } from 'react';
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
+// Define the main component
 const App = () => {
-  const[name,setName]=useState('raj');
+  // State variables to store user input
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
+  // State variable to control whether to display user details
+  const [display, setDisplay] = useState(false);
+
+  // Function to reset the form data
+  const resetData = () => {
+    setDisplay(false);
+    setName('');
+    setEmail('');
+    setPassword('');
+  };
+
   return (
     <View>
-      <Text style={{fontSize: 40}}>Handle the textInput</Text>
-      <Text style={{fontSize: 30, color:'red'}}>{name}</Text>
+      {/* Header */}
+      <Text
+        style={{
+          fontSize: 35,
+          textAlign: 'center',
+          backgroundColor: 'green',
+          marginTop: 10,
+        }}>
+        Simple Form
+      </Text>
+      
+      {/* Text input fields */}
       <TextInput
-        placeholder="Enter your name"
-        // value is used to set value of the input
+        style={styles.textInput}
+        placeholder="Enter your full name"
+        onChangeText={text => setName(text)}
         value={name}
-        style={styles.design}
-        onChangeText={(text)=>{setName(text)}}
       />
-      <Button title='Clear' onPress={(text)=>setName('')}/>
+      <TextInput
+        style={styles.textInput}
+        placeholder="Enter your email"
+        onChangeText={text => setEmail(text)}
+        value={email}
+      />
+      <TextInput
+        style={styles.textInput}
+        placeholder="Enter your password"
+        onChangeText={text => setPassword(text)}
+        value={password}
+      />
+      
+      {/* Buttons */}
+      <View style={styles.buttons}>
+        {/* Button to display user details */}
+        <Button title="get details" onPress={() => setDisplay(true)} />
+      </View>
+      <View style={styles.buttons}>
+        {/* Button to reset form data */}
+        <Button title="reset" color={'red'} onPress={resetData} />
+      </View>
+
+      {/* Display user details conditionally */}
+      {display ? (
+        <View style={{ backgroundColor: 'purple' }}>
+          <Text style={{ fontSize: 25 }}>Your name is :{name}</Text>
+          <Text style={{ fontSize: 25 }}>Your email is :{email}</Text>
+          <Text style={{ fontSize: 25 }}>Your password is :{password}</Text>
+        </View>
+      ) : null}
     </View>
   );
 };
- const styles=StyleSheet.create({
-  design:{
-    fontSize: 30,
-    color: 'black',
+
+// Styles
+const styles = StyleSheet.create({
+  textInput: {
+    fontSize: 18,
     borderWidth: 2,
-    borderColor: 'purple',
-    marginBottom:15,
-  }
- })
+    borderColor: 'blue',
+    borderRadius: 10,
+    margin: 15,
+  },
+  buttons: {
+    margin: 10,
+  },
+});
+
+// Export the component as the default export
 export default App;
