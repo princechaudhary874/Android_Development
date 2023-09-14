@@ -1,45 +1,56 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
-import UserData from './components/UserData';
+import {SafeAreaView, SectionList, StyleSheet, Text, View} from 'react-native';
+
 const App = () => {
   const users = [
-    {id: 1, name: 'Ranjit'},
-    {id: 4, name: 'Sagar'},
-    {id: 6, name: 'Sneha'},
-    {id: 3, name: 'Prince'},
-    {id: 9, name: 'Rajesh'},
-    {id: 10, name: 'Sangam'},
-    {id: 11, name: 'Neha'},
-    {id: 13, name: 'Princess'},
-    {id: 12, name: 'Raju'},
-    {id: 14, name: 'Sanjay'},
-    {id: 16, name: 'Sontosh'},
-    {id: 18, name: 'Priya'},
-    {id: 20, name: 'Raja'},
-    {id: 21, name: 'Satish'},
-    {id: 22, name: 'Nitish'},
-    {id: 23, name: 'Pankaj'},
+    {
+      id: 1,
+      name: 'Prince',
+      data: ['java', 'js', 'c', 'c++', 'HTML'],
+    },
+    {
+      id: 2,
+      name: 'Raj',
+      data: ['Python', 'js', 'c#', 'c++', 'css'],
+    },
+    {
+      id: 3,
+      name: 'Sneha',
+      // Note: for nested array , we must use data as object name
+      data: ['js', 'django', 'css', 'bootstrap', 'assembly language'],
+    },
   ];
   return (
-    <View>
-      <Text
-        style={{
-          fontSize: 32,
-          backgroundColor: 'black',
-          color: 'white',
-          textAlign: 'center',
-          marginBottom: 20,
-        }}>
-        Loop with flat list
-      </Text>
-      {/* FlatList component to render the list of users */}
-      <FlatList
-        data={users}
-        renderItem={({item}) => <UserData items={item} />}
-        keyExtractor={item => item.id}
+    <SafeAreaView style={styles.container}>
+      {/* <Text style={{fontSize: 32}}>Section List </Text> */}
+      <SectionList
+        sections={users}
+        renderItem={({item}) => <Text style={styles.object}>{item}</Text>}
+        renderSectionHeader={({section: {name}}) => (
+          <Text style={styles.header}>{name}</Text>
+        )}
       />
-    </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+    marginHorizontal: 16,
+  },
+  object: {
+    fontSize: 25,
+    backgroundColor: 'black',
+    color: 'aqua',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  header: {
+    fontFamily: 40,
+    color: 'red',
+  },
+});
 
 export default App;
