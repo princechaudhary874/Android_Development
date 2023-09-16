@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, SectionList, StyleSheet, Text, View} from 'react-native';
+import {SectionList, StyleSheet, Text, View} from 'react-native';
 
 const App = () => {
   const users = [
@@ -21,7 +21,7 @@ const App = () => {
     },
   ];
   return (
-    <SafeAreaView style={styles.container}>
+    <View>
       {/* <Text style={{fontSize: 32}}>Section List </Text> */}
       <SectionList
         sections={users}
@@ -30,14 +30,13 @@ const App = () => {
           <Text style={styles.header}>{name}</Text>
         )}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
     marginHorizontal: 16,
   },
   object: {
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
   },
   header: {
-    fontFamily: 40,
+    fontSize:30,
     color: 'red',
   },
 });
